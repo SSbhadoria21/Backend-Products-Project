@@ -45,7 +45,10 @@ export default function ProductBrowser() {
         axios.get(`${API_URL}/stats`),
         axios.get(`${API_URL}/categories`),
         axios.get(`${API_URL}/products`, {
-          params: { category: selectedCategory || undefined }
+          params: { 
+            category: selectedCategory || undefined,
+            limit: 20
+          }
         })
       ]);
       setStats(statsRes.data);
@@ -67,7 +70,8 @@ export default function ProductBrowser() {
       const res = await axios.get(`${API_URL}/products`, {
         params: { 
           category: selectedCategory || undefined,
-          cursor: nextCursor 
+          cursor: nextCursor,
+          limit: 20
         }
       });
       
